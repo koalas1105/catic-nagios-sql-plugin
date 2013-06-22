@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<DataSources>
+		<DataSource name="default">
+			<DriverClass>oracle.jdbc.driver.OracleDriver</DriverClass>
+			<JdbcUrl>jdbc:oracle:thin:@10.2.1.242:1521:ORAL007</JdbcUrl>
+			<User>icsmng</User>
+			<Password>icsmng</Password>
+		</DataSource>
+	</DataSources>
+	<Sql>
+		<Group name="plt" dsName="default">
+			<Item name="pubigtjnl1"
+				sql="select sts, count(sts) from pubigtjnl1 where sts in ('1', '2', '4', '8', '9') group by sts">
+			</Item>
+                        <Item name="pubigtjnl2"
+                                sql="select count(sts) sts from pubigtjnl1 where sts in ('1')" desc="冲正重发">
+                        </Item>
+		</Group>
+	</Sql>
+	<Mappings>
+		<Mapping name="plt.pubigtjnl2">
+			<Item name= "sts" value="待冲正"  />
+		</Mapping>
+                <Mapping name="plt.pubigtjnl1">
+                        <Item name= "sts.1" value="待冲正1"  />
+                        <Item name= "sts.2" value="待冲正2"  />
+                        <Item name= "sts.4" value="待冲正4"  />
+                        <Item name= "sts.8" value="待冲正8"  />
+                        <Item name= "sts.9" value="待冲正9"  />
+                </Mapping>
+	</Mappings>
+</Root>
